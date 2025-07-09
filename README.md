@@ -1,38 +1,39 @@
-# xos15-launcher
-Android launcher inspired by XOS 15
-private GridView gridView;
-private List<ResolveInfo> apps;
-private PackageManager packageManager;
+# XOS 15 Launcher
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+XOS 15 Launcher is a custom Android launcher inspired by the XOS 15 interface, designed to provide a clean and user-friendly home screen experience.
 
-    packageManager = getPackageManager();
-    gridView = findViewById(R.id.gridView);
+## Features
 
-    loadApps();
+- 4x6 grid layout
+- Dock with 4 fixed apps
+- App drawer with all installed applications
+- Customizable themes
+- Smooth animations
 
-    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ResolveInfo app = apps.get(position);
-            Intent launchIntent = packageManager.getLaunchIntentForPackage(app.activityInfo.packageName);
-            if (launchIntent != null) {
-                startActivity(launchIntent);
-            } else {
-                Toast.makeText(MainActivity.this, "Cannot open this app.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    });
-}
+## Installation
 
-private void loadApps() {
-    Intent intent = new Intent(Intent.ACTION_MAIN, null);
-    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+1. Clone or download the repository.
+2. Open the project in Android Studio or AIDE.
+3. Build the project to generate the APK.
+4. Install the APK on your Android device.
 
-    apps = packageManager.queryIntentActivities(intent, 0);
-    AppAdapter adapter = new AppAdapter(this, apps);
-    gridView.setAdapter(adapter);
-}
+## Usage
+
+1. Open the "Settings" app on your device.
+2. Navigate to "Apps" or "Applications".
+3. Select "Default apps" or "Home app".
+4. Choose "XOS 15 Launcher" as your default home app.
+
+## Screenshots
+
+![Home Screen](screenshots/home_screen.png)
+![App Drawer](screenshots/app_drawer.png)
+
+## Requirements
+
+- Android 5.0 (Lollipop) or higher
+- 200MB of free storage space
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
